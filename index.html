@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktive knapper</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+        #red { background-color: red; }
+        #blue { background-color: blue; }
+        #green { background-color: green; }
+        #yellow { background-color: orange; }
+        #reset { background-color: gray; }
+    </style>
+</head>
+<body>
+    <h1>Trykk på en knapp for å endre bakgrunnsfarge!</h1>
+    <div class="button-container">
+        <button id="red">Rød</button>
+        <button id="blue">Blå</button>
+        <button id="green">Grønn</button>
+        <button id="yellow">Gul</button>
+        <button id="reset">Tilbakestill</button>
+    </div>
+
+    <script>
+        // Finn alle knappene
+        const redButton = document.getElementById("red");
+        const blueButton = document.getElementById("blue");
+        const greenButton = document.getElementById("green");
+        const yellowButton = document.getElementById("yellow");
+        const resetButton = document.getElementById("reset");
+
+        // Endre bakgrunnsfargen når en knapp trykkes
+        redButton.addEventListener("click", () => document.body.style.backgroundColor = "red");
+        blueButton.addEventListener("click", () => document.body.style.backgroundColor = "blue");
+        greenButton.addEventListener("click", () => document.body.style.backgroundColor = "green");
+        yellowButton.addEventListener("click", () => document.body.style.backgroundColor = "orange");
+        resetButton.addEventListener("click", () => document.body.style.backgroundColor = "white");
+    </script>
+</body>
+</html>
