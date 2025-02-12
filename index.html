@@ -1,23 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sulale</title>
+    <title>Dialog Interaktiv</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .content {
+            display: none;
+            font-size: 4rem;
+            font-weight: bold;
+            text-align: center;
+            color: transparent;
+            -webkit-text-stroke: 2px white;
+            text-shadow: 0px 0px 15px red, 0px 0px 20px orange, 0px 0px 25px yellow, 0px 0px 30px green, 0px 0px 35px cyan, 0px 0px 40px blue, 0px 0px 45px violet;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .buttons {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        button {
+            background: linear-gradient(45deg, red, orange, yellow, green, cyan, blue, violet);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .final {
+            color: transparent;
+            font-size: 3rem;
+            -webkit-text-stroke: 2px white;
+        }
+
+        .dialog {
+            font-size: 5rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            text-shadow: 0px 0px 15px red, 0px 0px 20px orange, 0px 0px 25px yellow, 0px 0px 30px green, 0px 0px 35px cyan, 0px 0px 40px blue, 0px 0px 45px violet;
+        }
+    </style>
 </head>
 <body>
-    <h1>Velkommen til Sulale</h1>
-    <p>Her er et Instagram-innlegg relatert til prosjektet:</p>
-    
-    <!-- Instagram Embed Code -->
-    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DFsuR5WCMiW/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-        <div style="padding:16px;">
-            <a href="https://www.instagram.com/reel/DFsuR5WCMiW/?utm_source=ig_embed&amp;utm_campaign=loading" target="_blank">
-                Se dette innlegget på Instagram
-            </a>
-        </div>
-    </blockquote>
-    <script async src="//www.instagram.com/embed.js"></script>
+    <div id="dialog" class="dialog">Dialog</div>
+    <div id="content1" class="content active">Lytte</div>
+    <div id="content2" class="content">Uttrykke</div>
+    <div id="content3" class="content">Møte</div>
+    <div id="content4" class="content">Utsette</div>
+    <div id="content5" class="content">Lytte, Uttrykke, Møte, Utsette</div>
 
+    <div class="buttons">
+        <button onclick="prevSlide()">&#8592; Bakover</button>
+        <button onclick="nextSlide()">Forover &#8594;</button>
+    </div>
+
+    <script>
+        let currentIndex = 1;
+        const totalSlides = 5;
+
+        function showSlide(index) {
+            for (let i = 1; i <= totalSlides; i++) {
+                const content = document.getElementById(`content${i}`);
+                if (content) {
+                    content.classList.remove('active');
+                }
+            }
+            const currentContent = document.getElementById(`content${index}`);
+            if (currentContent) {
+                currentContent.classList.add('active');
+            }
+        }
+
+        function nextSlide() {
+            currentIndex++;
+            if (currentIndex > totalSlides) currentIndex = 1;
+            showSlide(currentIndex);
+        }
+
+        function prevSlide() {
+            currentIndex--;
+            if (currentIndex < 1) currentIndex = totalSlides;
+            showSlide(currentIndex);
+        }
+
+        showSlide(currentIndex);
+    </script>
 </body>
 </html>
