@@ -3,105 +3,64 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nav Land Fountain</title>
+    <title>Velkommen til Fagdag</title>
     <style>
       body {
         margin: 0;
         overflow: hidden;
+        background: linear-gradient(to bottom right, #4facfe, #00f2fe);
         display: flex;
         align-items: center;
         justify-content: center;
         height: 100vh;
-        background: black;
-      }
-
-      .container {
-        position: relative;
-        width: 100%;
-        height: 100%;
-      }
-
-      .letter {
-        position: absolute;
-        font-size: 2em;
-        font-weight: bold;
         color: white;
-        animation: fly 3s ease-out forwards;
-        text-shadow: 0 0 10px red, 0 0 20px yellow, 0 0 30px blue, 0 0 40px green;
+        font-family: Arial, sans-serif;
+        font-size: 3em;
+        text-align: center;
       }
 
-      @keyframes fly {
+      .word {
+        opacity: 0;
+        animation: fadeIn 2s forwards;
+      }
+
+      @keyframes fadeIn {
         0% {
-          transform: translate(0, 0) scale(1);
-          opacity: 1;
-        }
-        80% {
-          opacity: 0.8;
-        }
-        100% {
-          transform: translate(0, -500px) scale(0.5);
           opacity: 0;
-        }
-      }
-
-      .background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle, rgba(255, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
-        animation: pulse 6s infinite alternate;
-        z-index: -1;
-      }
-
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-          opacity: 1;
+          transform: scale(0.8);
         }
         100% {
-          transform: scale(1.5);
-          opacity: 0.5;
+          opacity: 1;
+          transform: scale(1);
         }
+      }
+
+      #welcome {
+        animation-delay: 0s;
+      }
+
+      #to {
+        animation-delay: 2s;
+      }
+
+      #fagdag {
+        animation-delay: 4s;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="background"></div>
+    <div id="presentation">
+      <div class="word" id="welcome">Velkommen</div>
+      <div class="word" id="to">Til</div>
+      <div class="word" id="fagdag">Fagdag</div>
     </div>
-
+    <audio id="audio" src="your-audio-file.mp3"></audio>
     <script>
-      const container = document.querySelector(".container");
-      const letters = ["N", "a", "v", "L", "a", "n", "d"];
-      const colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+      // Play audio when the page loads
+      const audio = document.getElementById("audio");
+      audio.play();
 
-      function createLetter(letter, color) {
-        const span = document.createElement("span");
-        span.className = "letter";
-        span.textContent = letter;
-        span.style.color = color;
-        span.style.left = `${Math.random() * 100}vw`;
-        span.style.top = `${window.innerHeight}px`;
-        span.style.animationDelay = `${Math.random() * 1}s`;
-
-        container.appendChild(span);
-
-        // Remove the letter after animation ends
-        span.addEventListener("animationend", () => {
-          span.remove();
-        });
-      }
-
-      function generateFountain() {
-        letters.forEach((letter, index) => {
-          const color = colors[index % colors.length];
-          createLetter(letter, color);
-        });
-      }
-
-      setInterval(generateFountain, 500);
+      // Optionally sync animations with audio timing if needed
     </script>
   </body>
 </html>
